@@ -1,0 +1,469 @@
+import { MenuItem, HostelAddress, DeliverySlot, DeliveryPartner, Order, UserProfile } from '../types';
+
+export const INITIAL_MENU_ITEMS: MenuItem[] = [
+  {
+    id: 'food-1',
+    name: 'Campus Jumbo Burger Combo',
+    category: 'Combos',
+    price: 189,
+    originalPrice: 220,
+    isVeg: false,
+    isAvailable: true,
+    rating: 4.8,
+    ratingCount: 342,
+    prepTimeMinutes: 12,
+    description: 'Crispy toasted bun loaded with grilled juicy patty, signature spicy canteen mayo, fresh lettuce, and a side of golden fries + chilled beverage.',
+    image: '/src/assets/images/hero_campus_combo_1793819593119.jpg',
+    isSpecial: true,
+    isPopular: true,
+    isRecommended: true,
+    availableToppings: [
+      { name: 'Extra Cheddar Cheese Slice', price: 25 },
+      { name: 'Crispy Peri Peri Fries Upsize', price: 30 },
+      { name: 'Caramelized Onions & Jalapenos', price: 20 },
+      { name: 'Herb Garlic Mayo Dip', price: 15 }
+    ],
+    removableIngredients: ['Onions', 'Pickles', 'Canteen Mayo', 'Tomatoes'],
+    calories: 680
+  },
+  {
+    id: 'food-2',
+    name: 'Butter Paneer Tikka Kathi Roll',
+    category: 'Snacks',
+    price: 135,
+    originalPrice: 150,
+    isVeg: true,
+    isAvailable: true,
+    rating: 4.9,
+    ratingCount: 512,
+    prepTimeMinutes: 10,
+    description: 'Smoky tandoori spiced cottage cheese cubes wrapped inside a flaky multi-layered butter paratha with tangy mint coriander chutney and crunchy onion rings.',
+    image: '/src/assets/images/food_paneer_roll_1793819593701.jpg',
+    isSpecial: false,
+    isPopular: true,
+    isRecommended: true,
+    availableToppings: [
+      { name: 'Extra Amul Mozzarella Cheese', price: 25 },
+      { name: 'Double Paneer Cubes', price: 40 },
+      { name: 'Extra Mint Chutney & Mayo', price: 15 }
+    ],
+    removableIngredients: ['Raw Onion', 'Green Chillies', 'Mint Chutney', 'Chaat Masala'],
+    calories: 460
+  },
+  {
+    id: 'food-3',
+    name: 'Crispy Mysore Masala Dosa',
+    category: 'Breakfast',
+    price: 95,
+    originalPrice: 110,
+    isVeg: true,
+    isAvailable: true,
+    rating: 4.7,
+    ratingCount: 289,
+    prepTimeMinutes: 8,
+    description: 'Fresh fermented golden crepe slathered with spicy red garlic chutney, filled with potato bhaji, served with thick coconut chutney and piping hot drumstick sambar.',
+    image: '/src/assets/images/food_crispy_dosa_1793819595370.jpg',
+    isSpecial: true,
+    isPopular: true,
+    isRecommended: false,
+    availableToppings: [
+      { name: 'Extra Desi Ghee Roast', price: 20 },
+      { name: 'Grated Paneer Filling', price: 30 },
+      { name: 'Extra Bowl of Sambar', price: 15 }
+    ],
+    removableIngredients: ['Mustard Seed Tadka', 'Red Chilli Chutney inside', 'Curry Leaves'],
+    calories: 380
+  },
+  {
+    id: 'food-4',
+    name: 'Cheesy Veggie Delight Pan Pizza',
+    category: 'Fast Food',
+    price: 199,
+    originalPrice: 240,
+    isVeg: true,
+    isAvailable: true,
+    rating: 4.8,
+    ratingCount: 420,
+    prepTimeMinutes: 15,
+    description: '7-inch hand-stretched crust topped with rich Italian herb sauce, loaded with golden sweet corn, crisp bell peppers, diced onions, and stretchy 100% mozzarella.',
+    image: '/src/assets/images/food_cheese_pizza_1793819594606.jpg',
+    isSpecial: true,
+    isPopular: true,
+    isRecommended: true,
+    availableToppings: [
+      { name: 'Cheese Burst Crust', price: 45 },
+      { name: 'Black Olives & Jalapenos', price: 25 },
+      { name: 'Extra Seasoning Packets', price: 10 }
+    ],
+    removableIngredients: ['Capsicum', 'Onions', 'Sweet Corn', 'Oregano flakes'],
+    calories: 590
+  },
+  {
+    id: 'food-5',
+    name: 'Campus Artisan Cold Coffee & Brownie',
+    category: 'Beverages',
+    price: 110,
+    originalPrice: 130,
+    isVeg: true,
+    isAvailable: true,
+    rating: 4.9,
+    ratingCount: 610,
+    prepTimeMinutes: 5,
+    description: 'Thick, frothy slow-brewed cold coffee with chocolate swirls, served alongside a warm fudgy chocolate walnut brownie. The #1 study session booster.',
+    image: '/src/assets/images/food_cold_coffee_1793819595530.jpg',
+    isSpecial: false,
+    isPopular: true,
+    isRecommended: true,
+    availableToppings: [
+      { name: 'Extra Chocolate Fudge Drizzle', price: 15 },
+      { name: 'Vanilla Ice Cream Scoop', price: 30 },
+      { name: 'Espresso Double Shot', price: 25 }
+    ],
+    removableIngredients: ['Sugar (make unsweetened)', 'Chocolate Drizzle', 'Ice Cubes'],
+    calories: 340
+  },
+  {
+    id: 'food-6',
+    name: 'Royal Chicken Biryani Thali',
+    category: 'Lunch',
+    price: 210,
+    originalPrice: 240,
+    isVeg: false,
+    isAvailable: true,
+    rating: 4.9,
+    ratingCount: 388,
+    prepTimeMinutes: 10,
+    description: 'Fragrant long-grain basmati rice slow-cooked with marinated tender chicken cuts, saffron aromatics, boiled egg, creamy cooling boondi raita, and spicy salan.',
+    image: '/src/assets/images/hero_campus_combo_1793819593119.jpg',
+    isSpecial: true,
+    isPopular: true,
+    isRecommended: true,
+    availableToppings: [
+      { name: 'Extra Boiled Egg', price: 15 },
+      { name: 'Extra Bowl of Raita', price: 20 },
+      { name: 'Gulab Jamun (1 pc)', price: 25 }
+    ],
+    removableIngredients: ['Boiled Egg', 'Fried Onions', 'Coriander'],
+    calories: 720
+  },
+  {
+    id: 'food-7',
+    name: 'Mumbai Style Pav Bhaji',
+    category: 'Snacks',
+    price: 110,
+    originalPrice: 125,
+    isVeg: true,
+    isAvailable: true,
+    rating: 4.6,
+    ratingCount: 240,
+    prepTimeMinutes: 8,
+    description: 'Mashed vegetable gravy infused with butter and fragrant spices, served with two soft butter-toasted pav breads, fresh chopped onion, and juicy lemon wedges.',
+    image: '/src/assets/images/food_paneer_roll_1793819593701.jpg',
+    isSpecial: false,
+    isPopular: false,
+    isRecommended: true,
+    availableToppings: [
+      { name: 'Extra 2 Butter Pavs', price: 25 },
+      { name: 'Extra Grated Cheese on Bhaji', price: 25 }
+    ],
+    removableIngredients: ['Chopped Coriander', 'Raw Onion Garnish', 'Butter Dollop'],
+    calories: 450
+  },
+  {
+    id: 'food-8',
+    name: 'Warm Sizzling Chocolate Lava Cake',
+    category: 'Desserts',
+    price: 85,
+    originalPrice: 100,
+    isVeg: true,
+    isAvailable: true,
+    rating: 4.8,
+    ratingCount: 310,
+    prepTimeMinutes: 6,
+    description: 'Decadent baked chocolate cake with a molten Belgian chocolate center that oozes out upon spooning. A pure sweet delight after long exams.',
+    image: '/src/assets/images/food_cold_coffee_1793819595530.jpg',
+    isSpecial: false,
+    isPopular: true,
+    isRecommended: false,
+    availableToppings: [
+      { name: 'Vanilla Ice Cream Scoop', price: 30 },
+      { name: 'Crushed Almonds & Cashews', price: 20 }
+    ],
+    removableIngredients: ['Powdered Sugar Dusting'],
+    calories: 390
+  },
+  {
+    id: 'food-9',
+    name: 'North Indian Executive Lunch Thali',
+    category: 'Lunch',
+    price: 160,
+    originalPrice: 180,
+    isVeg: true,
+    isAvailable: true,
+    rating: 4.7,
+    ratingCount: 475,
+    prepTimeMinutes: 10,
+    description: 'Complete wholesome meal featuring Dal Makhani, Paneer Butter Masala, Jeera Rice, 3 Butter Rotis, Cucumber Salad, Pickle, and Sweet Gulab Jamun.',
+    image: '/src/assets/images/food_crispy_dosa_1793819595370.jpg',
+    isSpecial: false,
+    isPopular: true,
+    isRecommended: true,
+    availableToppings: [
+      { name: 'Upgrade to 2 Laccha Parathas', price: 25 },
+      { name: 'Extra Paneer Gravy', price: 35 },
+      { name: 'Roasted Masala Papad', price: 15 }
+    ],
+    removableIngredients: ['Pickle', 'Salad Onions', 'Ghee on Rotis'],
+    calories: 690
+  }
+];
+
+export const INITIAL_ADDRESSES: HostelAddress[] = [
+  {
+    id: 'addr-1',
+    label: 'Main Hostel Room',
+    hostelName: 'Aryabhatta Boys Hostel (H-4)',
+    buildingName: 'Block B - Wing 2',
+    block: 'Block B',
+    floorNumber: '3rd Floor',
+    roomNumber: 'Room 314',
+    studentPhoneNumber: '+91 98765 43210',
+    deliveryInstructions: 'Ring doorbell twice. If studying or asleep, leave package with floor monitor.',
+    isDefault: true
+  },
+  {
+    id: 'addr-2',
+    label: 'Campus Library Common Desk',
+    hostelName: 'Central Academic Block',
+    buildingName: 'Dr. APJ Abdul Kalam Library',
+    block: 'Reading Wing',
+    floorNumber: '1st Floor',
+    roomNumber: 'Desk #42',
+    studentPhoneNumber: '+91 98765 43210',
+    deliveryInstructions: 'Deliver outside library entrance gate near digital lockers.',
+    isDefault: false
+  }
+];
+
+export const INITIAL_DELIVERY_SLOTS: DeliverySlot[] = [
+  {
+    id: 'slot-1',
+    timeWindow: '12:30 PM - 01:00 PM',
+    type: 'Lunch',
+    maxCapacity: 35,
+    bookedCount: 18,
+    isActive: true
+  },
+  {
+    id: 'slot-2',
+    timeWindow: '01:15 PM - 01:45 PM',
+    type: 'Lunch',
+    maxCapacity: 35,
+    bookedCount: 29,
+    isActive: true
+  },
+  {
+    id: 'slot-3',
+    timeWindow: '04:45 PM - 05:15 PM',
+    type: 'Snacks',
+    maxCapacity: 40,
+    bookedCount: 12,
+    isActive: true
+  },
+  {
+    id: 'slot-4',
+    timeWindow: '08:00 PM - 08:30 PM',
+    type: 'Dinner',
+    maxCapacity: 30,
+    bookedCount: 22,
+    isActive: true
+  },
+  {
+    id: 'slot-5',
+    timeWindow: '10:30 PM - 11:00 PM',
+    type: 'Night Canteen',
+    maxCapacity: 50,
+    bookedCount: 38,
+    isActive: true
+  }
+];
+
+export const INITIAL_DELIVERY_PARTNERS: DeliveryPartner[] = [
+  {
+    id: 'dp-1',
+    name: 'Rahul Verma (Student Partner #1)',
+    phone: '+91 98112 34567',
+    activeOrdersCount: 1,
+    rating: 4.9,
+    status: 'On Delivery'
+  },
+  {
+    id: 'dp-2',
+    name: 'Amit Patel (Student Partner #2)',
+    phone: '+91 98223 45678',
+    activeOrdersCount: 0,
+    rating: 4.8,
+    status: 'Available'
+  },
+  {
+    id: 'dp-3',
+    name: 'Vikas Kumar (Canteen Runner)',
+    phone: '+91 98334 56789',
+    activeOrdersCount: 2,
+    rating: 4.7,
+    status: 'On Delivery'
+  }
+];
+
+export const INITIAL_ORDERS: Order[] = [
+  {
+    id: 'ord-101',
+    orderNumber: 'CB-9412',
+    createdAt: new Date(Date.now() - 18 * 60 * 1000).toISOString(),
+    type: 'delivery',
+    status: 'preparing',
+    studentName: 'Aarav Sharma',
+    studentPhone: '+91 98765 43210',
+    studentId: '2024CS084',
+    items: [
+      {
+        id: 'oi-1',
+        menuItemId: 'food-1',
+        name: 'Campus Jumbo Burger Combo',
+        price: 189,
+        quantity: 1,
+        isVeg: false,
+        customization: {
+          spiceLevel: 'Spicy',
+          extraCheese: true,
+          extraToppings: ['Extra Cheddar Cheese Slice', 'Crispy Peri Peri Fries Upsize'],
+          removedIngredients: ['Pickles'],
+          specialInstructions: 'Make fries extra crispy please!'
+        },
+        subtotal: 244
+      },
+      {
+        id: 'oi-2',
+        menuItemId: 'food-5',
+        name: 'Campus Artisan Cold Coffee & Brownie',
+        price: 110,
+        quantity: 1,
+        isVeg: true,
+        customization: {
+          spiceLevel: 'Mild',
+          extraCheese: false,
+          extraToppings: ['Vanilla Ice Cream Scoop'],
+          removedIngredients: [],
+          specialInstructions: 'Serve brownie warm'
+        },
+        subtotal: 140
+      }
+    ],
+    itemTotal: 384,
+    deliveryFee: 0,
+    discount: 50,
+    promoCodeApplied: 'CAMPUS50',
+    finalAmount: 334,
+    hostelAddress: INITIAL_ADDRESSES[0],
+    deliverySlot: '12:30 PM - 01:00 PM',
+    deliveryPartnerId: 'dp-1',
+    deliveryPartnerName: 'Rahul Verma',
+    deliveryPartnerPhone: '+91 98112 34567',
+    deliveryPin: '4829',
+    estimatedTime: '12 mins left',
+    paymentMethod: 'UPI',
+    paymentStatus: 'Paid'
+  },
+  {
+    id: 'ord-102',
+    orderNumber: 'CB-9413',
+    createdAt: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
+    type: 'pickup',
+    status: 'ready',
+    studentName: 'Aarav Sharma',
+    studentPhone: '+91 98765 43210',
+    studentId: '2024CS084',
+    items: [
+      {
+        id: 'oi-3',
+        menuItemId: 'food-2',
+        name: 'Butter Paneer Tikka Kathi Roll',
+        price: 135,
+        quantity: 2,
+        isVeg: true,
+        customization: {
+          spiceLevel: 'Medium',
+          extraCheese: true,
+          extraToppings: ['Extra Amul Mozzarella Cheese'],
+          removedIngredients: ['Green Chillies'],
+          specialInstructions: 'Pack in separate silver foils'
+        },
+        subtotal: 320
+      }
+    ],
+    itemTotal: 320,
+    deliveryFee: 0,
+    discount: 20,
+    promoCodeApplied: 'SQUAD20',
+    finalAmount: 300,
+    pickupSlot: 'In 15 mins (Counter 2)',
+    pickupCounter: 'Express Counter #2 (Fast Food Section)',
+    pickupQrCode: 'CAMPUSBITE-CB9413-VERIFIED',
+    estimatedTime: 'Ready for Pickup now!',
+    paymentMethod: 'Wallet',
+    paymentStatus: 'Paid'
+  },
+  {
+    id: 'ord-103',
+    orderNumber: 'CB-9410',
+    createdAt: new Date(Date.now() - 120 * 60 * 1000).toISOString(),
+    type: 'delivery',
+    status: 'delivered',
+    studentName: 'Aarav Sharma',
+    studentPhone: '+91 98765 43210',
+    studentId: '2024CS084',
+    items: [
+      {
+        id: 'oi-4',
+        menuItemId: 'food-4',
+        name: 'Cheesy Veggie Delight Pan Pizza',
+        price: 199,
+        quantity: 1,
+        isVeg: true,
+        customization: {
+          spiceLevel: 'Mild',
+          extraCheese: true,
+          extraToppings: ['Cheese Burst Crust', 'Black Olives & Jalapenos'],
+          removedIngredients: [],
+          specialInstructions: 'Extra oregano packets'
+        },
+        subtotal: 269
+      }
+    ],
+    itemTotal: 269,
+    deliveryFee: 15,
+    discount: 0,
+    finalAmount: 284,
+    hostelAddress: INITIAL_ADDRESSES[0],
+    deliverySlot: '11:00 AM - 11:30 AM',
+    deliveryPartnerId: 'dp-1',
+    deliveryPartnerName: 'Rahul Verma',
+    deliveryPartnerPhone: '+91 98112 34567',
+    deliveryPin: '7192',
+    estimatedTime: 'Delivered',
+    paymentMethod: 'UPI',
+    paymentStatus: 'Paid',
+    deliveredAt: new Date(Date.now() - 95 * 60 * 1000).toISOString()
+  }
+];
+
+export const INITIAL_USER: UserProfile = {
+  id: 'usr-student-1',
+  name: 'Aarav Sharma',
+  email: 'aarav.cs24@campus.edu',
+  role: 'student',
+  studentIdNumber: '2024CS084',
+  phoneNumber: '+91 98765 43210',
+  walletBalance: 650,
+  department: 'Computer Science & Engineering (3rd Year)'
+};

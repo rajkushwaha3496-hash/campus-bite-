@@ -1,0 +1,6 @@
+{
+  "name": "CampusBite",
+  "description": "Smart college canteen food pre-booking and customization platform by #TEAMSQUAD. Pre-book meals, customize recipes, choose pickup or hostel delivery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
